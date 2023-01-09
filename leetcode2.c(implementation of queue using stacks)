@@ -1,0 +1,63 @@
+
+typedef struct
+{
+    int s[100];
+    int front;
+    int rear;
+    int l;
+} MyQueue;
+
+
+MyQueue* myQueueCreate()
+{
+    MyQueue* ptr = malloc(sizeof(MyQueue));
+    ptr->front = 0;
+    ptr->rear = 0;
+    ptr->l = 0;
+    return ptr;    
+}
+
+void myQueuePush(MyQueue* ptr, int x)
+{
+   if(ptr == NULL)
+       return;
+    ptr->s[ptr->rear] = x;
+    ptr->l += 1;
+    ptr->rear+=1;
+}
+
+int myQueuePop(MyQueue* ptr)
+{
+   int temp;
+   if(ptr==NULL)
+      return;
+   temp = ptr->s[ptr->front];
+   ptr->front+=1;
+   ptr->l-=1;
+   return temp;
+}
+
+int myQueuePeek(MyQueue* ptr)
+{
+    int temp;
+    if(ptr == NULL)
+        return;
+    return ptr->s[ptr->front];
+}
+
+bool myQueueEmpty(MyQueue* ptr)
+{
+    if(ptr == NULL)
+        return;
+    if(ptr->l==0)
+        return true;
+    else
+        return false;
+}
+
+void myQueueFree(MyQueue* ptr)
+{
+    if(ptr==NULL)
+        return;
+    free(ptr);
+}
